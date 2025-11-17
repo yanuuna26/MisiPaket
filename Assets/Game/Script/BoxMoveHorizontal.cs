@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BoxMoveHorizontal : MonoBehaviour
 {
-    public float kecepatan = 3f;
+    public float kecepatan = 1f;
     public bool isMoveRight = true;
     public bool isDropped = false;
     public bool isGrounded = false;
@@ -25,7 +25,6 @@ public class BoxMoveHorizontal : MonoBehaviour
             float dir = isMoveRight ? 1f : -1f;
             transform.Translate(Vector3.right * dir * kecepatan * Time.deltaTime);
         }
-        
     }
 
     void OnCollisionEnter2D(Collision2D col)

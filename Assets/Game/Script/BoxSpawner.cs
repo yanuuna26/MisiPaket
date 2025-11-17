@@ -9,6 +9,8 @@ public class BoxSpawner : MonoBehaviour
     public GameObject currentBox;
     public GameObject onoff;
     public TMP_Text skorText;
+
+    public float kecepatan = 0f;
     public int skor = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,6 +37,8 @@ public class BoxSpawner : MonoBehaviour
         BoxMoveHorizontal bm = currentBox.GetComponent<BoxMoveHorizontal>();
         bm.isDropped = false;
         bm.isMoveRight = true;
+        kecepatan += 1;
+        bm.kecepatan = kecepatan;
 
         Rigidbody2D rb = currentBox.GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
