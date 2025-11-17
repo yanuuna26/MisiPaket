@@ -10,6 +10,8 @@ public class BoxSpawner : MonoBehaviour
     public GameObject onoff;
     public TMP_Text skorText;
 
+    public AudioSource suaraPaket;
+
     public float kecepatan = 0f;
     public int skor = 0;
 
@@ -32,6 +34,10 @@ public class BoxSpawner : MonoBehaviour
         Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.90f, 10f));
 
         currentBox = Instantiate(boxPrefab, pos, Quaternion.identity);
+        if(suaraPaket != null)
+        {
+            suaraPaket.Play();
+        }
 
         // Reset status movement dan fisika box
         BoxMoveHorizontal bm = currentBox.GetComponent<BoxMoveHorizontal>();
