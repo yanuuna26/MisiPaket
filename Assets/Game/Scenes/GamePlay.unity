@@ -1223,10 +1223,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1287,7 +1287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1702408003}
-  - component: {fileID: 1702408002}
+  - component: {fileID: 1702408004}
   m_Layer: 0
   m_Name: BoxSpawner
   m_TagString: boxGameOver
@@ -1295,23 +1295,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1702408002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1702408001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4910cd69a0afa364e874da045fd797f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boxPrefab: {fileID: 5638098091871801592, guid: db10bda613c8e124ebb3ac3e8c384f42, type: 3}
-  currentBox: {fileID: 0}
-  onoff: {fileID: 423249423}
-  skorText: {fileID: 71272072}
-  skor: 0
 --- !u!4 &1702408003
 Transform:
   m_ObjectHideFlags: 0
@@ -1327,6 +1310,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1702408004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702408001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b4de1b4be974ba98f6b1bb3aa7fa0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxPrefab: {fileID: 5638098091871801592, guid: db10bda613c8e124ebb3ac3e8c384f42, type: 3}
+  currentBox: {fileID: 0}
+  onoff: {fileID: 423249423}
+  skorText: {fileID: 71272072}
+  skor: 0
 --- !u!1 &1878754685
 GameObject:
   m_ObjectHideFlags: 0
