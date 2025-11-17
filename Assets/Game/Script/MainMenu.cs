@@ -1,26 +1,41 @@
+//main menu
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+     // Fungsi untuk tombol Start
+    public void OnClickStart()
+    {
+        SceneManager.LoadScene("Gameplay");
+    }
+
+    // Fungsi untuk tombol Credit
+    public void OnClickCredit()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+
+    // Fungsi untuk tombol Exit
+    public void OnClickExit()
+    {
+        Application.Quit();
+        Debug.Log("Keluar Aplikasi...");
+    }
+
+    public void exitCredit()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public GameObject tombolMain;
-
-    public void loadGamePlay()
+    void Start()
     {
-        SceneManager.LoadScene("GamePlay");
+        
     }
 
-    public void loadCredit()
+    // Update is called once per frame
+    void Update()
     {
-        //SceneManager.LoadScene("GamePlay");
-        Debug.Log("Load Credit");
+        
     }
-    
-    public void loadExit()
-    {
-        //SceneManager.LoadScene("GamePlay");
-        Debug.Log("Exit....");
-    }
-
 }
