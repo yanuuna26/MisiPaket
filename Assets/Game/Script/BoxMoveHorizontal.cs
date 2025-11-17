@@ -15,6 +15,7 @@ public class BoxMoveHorizontal : MonoBehaviour
             float dir = isMoveRight ? 1f : -1f;
             transform.Translate(Vector3.right * dir * kecepatan * Time.deltaTime);
         }
+        
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -25,12 +26,16 @@ public class BoxMoveHorizontal : MonoBehaviour
         {
             isMoveRight = !isMoveRight;
         }
-        Debug.Log(isDropped);
-        if (col.collider.CompareTag("lantai") && isGrounded==false)
+        if (col.collider.CompareTag("meja") && isGrounded == false)
         {
             Debug.Log("jatuh");
             isGrounded = true;
             setelahJatuh?.Invoke();
+        }
+        if (isDropped && col.collider.CompareTag("tembok"))
+        {
+            Debug.Log("Game over.....");
+            Time.timeScale = 0f;
         }
     }
 }
