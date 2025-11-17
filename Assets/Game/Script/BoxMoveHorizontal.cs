@@ -5,6 +5,8 @@ public class BoxMoveHorizontal : MonoBehaviour
     public float kecepatan = 3f;
     public bool isMoveRight = true;
     public bool isDropped = false;
+    public bool isGrounded = false;
+    public System.Action setelahJatuh;
 
     void Update()
     {
@@ -23,9 +25,12 @@ public class BoxMoveHorizontal : MonoBehaviour
         {
             isMoveRight = !isMoveRight;
         }
-        if (col.collider.CompareTag("lantai"))
+        Debug.Log(isDropped);
+        if (col.collider.CompareTag("lantai") && isGrounded==false)
         {
-            isDropped = true;
+            Debug.Log("jatuh");
+            isGrounded = true;
+            setelahJatuh?.Invoke();
         }
     }
 }

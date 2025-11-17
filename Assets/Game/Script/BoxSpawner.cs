@@ -12,7 +12,7 @@ public class BoxSpawner : MonoBehaviour
     {
         SpawnNewBox();
         // MoveHorizontal();
-        StartCoroutine(waktuSpawnBox());
+        //StartCoroutine(waktuSpawnBox());
     }
 
     // Update is called once per frame
@@ -34,6 +34,8 @@ public class BoxSpawner : MonoBehaviour
 
         Rigidbody2D rb = currentBox.GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
+
+        bm.setelahJatuh = () => SpawnNewBox();
     }
 
 
@@ -49,21 +51,11 @@ public class BoxSpawner : MonoBehaviour
     {
         BoxMoveHorizontal bm = currentBox.GetComponent<BoxMoveHorizontal>();
         bm.isDropped = true;
+
         Rigidbody2D rb = currentBox.GetComponent<Rigidbody2D>();
         rb.gravityScale = 3f;
     }
 
     void UpdateSpeed(int score) { }
-
-    IEnumerator waktuSpawnBox()
-    {
-        BoxMoveHorizontal bm = currentBox.GetComponent<BoxMoveHorizontal>();
-        if (bm.isDropped)
-        {
-            yield return new WaitForSeconds(3);
-            SpawnNewBox();
-        }
-        yield return null;
-    }
 
 }
