@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class BoxSpawner : MonoBehaviour
@@ -6,6 +7,9 @@ public class BoxSpawner : MonoBehaviour
 
     public GameObject boxPrefab;
     public GameObject currentBox;
+    public GameObject onoff;
+    public TMP_Text skorText;
+    public int skor = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,7 +42,7 @@ public class BoxSpawner : MonoBehaviour
         bm.setelahJatuh = () => SpawnNewBox();
     }
 
-
+    
     void DetectInput()
     {
         if (Input.GetMouseButtonDown(0))
@@ -55,6 +59,12 @@ public class BoxSpawner : MonoBehaviour
         Rigidbody2D rb = currentBox.GetComponent<Rigidbody2D>();
         rb.gravityScale = 3f;
     }
+
+    public void addScore(int score)
+    {   
+        skor = skor + score;
+        skorText.text = "Score : " + skor.ToString();
+    }
 
     void UpdateSpeed(int score) { }
 
