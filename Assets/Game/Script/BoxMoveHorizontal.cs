@@ -42,6 +42,7 @@ public class BoxMoveHorizontal : MonoBehaviour
             isGrounded = true;
             setelahJatuh?.Invoke();
             boxSpawner.addScore(10);
+            boxSpawner.dropBoxSound.Play();
 
         }
         if (isDropped && col.collider.CompareTag("tembok"))
@@ -49,7 +50,11 @@ public class BoxMoveHorizontal : MonoBehaviour
             isGameOver = true;
             Debug.Log("Game over.....");
             //spawnedImage = Instantiate(spritePrefab, spawnPosition, Quaternion.identity);
-            boxSpawner.onoff.SetActive(true);
+            boxSpawner.gameoverimg.SetActive(true);
+            boxSpawner.SimpanHighScore();
+            boxSpawner.HiskorText.gameObject.SetActive(true);
+            boxSpawner.RestartButton.SetActive(true);
+            boxSpawner.gameOverSound.Play();
             Time.timeScale = 0f;
         }
     }

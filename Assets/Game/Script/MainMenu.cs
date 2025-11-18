@@ -22,6 +22,10 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
         Debug.Log("Keluar Aplikasi...");
     }
+    public void Restart()
+    {
+        SceneManager.LoadScene("Gameplay");
+    }
 
     public void exitCredit()
     {
