@@ -9,11 +9,15 @@ public class BoxSpawner : MonoBehaviour
     public GameObject currentBox;
     public GameObject onoff;
     public TMP_Text skorText;
+    public TMP_Text highSkorText;
+    public TMP_Text yourSkorText;
+    
+
 
     public AudioSource suaraPaket;
 
     public float kecepatan = 0f;
-    public int skor = 0;
+    public int skor = 0, highSkor;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +25,10 @@ public class BoxSpawner : MonoBehaviour
         SpawnNewBox();
         // MoveHorizontal();
         //StartCoroutine(waktuSpawnBox());
+        if (PlayerPrefs.HasKey("highskor"))
+        {
+            highSkor = PlayerPrefs.GetInt("highskor");
+        }
     }
 
     // Update is called once per frame
@@ -34,7 +42,7 @@ public class BoxSpawner : MonoBehaviour
         Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.90f, 10f));
 
         currentBox = Instantiate(boxPrefab, pos, Quaternion.identity);
-        if(suaraPaket != null)
+        if (suaraPaket != null)
         {
             suaraPaket.Play();
         }
@@ -52,7 +60,7 @@ public class BoxSpawner : MonoBehaviour
         bm.setelahJatuh = () => SpawnNewBox();
     }
 
-    
+
     void DetectInput()
     {
         if (Input.GetMouseButtonDown(0))
@@ -71,11 +79,27 @@ public class BoxSpawner : MonoBehaviour
     }
 
     public void addScore(int score)
-    {   
+    {
         skor = skor + score;
-        skorText.text = "Score : " + skor.ToString();
-    }
+        skorText.text = skor.ToString();
+    }
 
-    void UpdateSpeed(int score) { }
+    public void tampilSkor()
+    {
+        yourSkorText.gameObject.SetActive(true);
+        yourSkorText.SetText("Your Score \n" + skor);
+    }
+
+    public void setHighSkor()
+    {
+        if (highSkor <= skor)
+        {
+            highSkor = skor;
+            PlayerPrefs.SetInt("highskor", highSkor);
+            PlayerPrefs.Save();
+        }
+        highSkorText.gameObject.SetActive(true);
+        highSkorText.SetText("High Score \n" + highSkor);
+    }
 
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BoxMoveHorizontal : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class BoxMoveHorizontal : MonoBehaviour
     public bool isGameOver = false;
     public System.Action setelahJatuh;
     public BoxSpawner boxSpawner;
+    // public GameObject efekDebu;
+
+
     //GameObject spritePrefab;
     //GameObject spawnedImage;
     //public GameObject onoff;
@@ -37,8 +41,9 @@ public class BoxMoveHorizontal : MonoBehaviour
         }
         if (col.collider.CompareTag("meja") && isGrounded == false)
         {
-            if(isGameOver) return;
-            Debug.Log("jatuh");
+            if (isGameOver) return;
+            //Debug.Log("jatuh");
+            //efekDebu.tampilDebu();
             isGrounded = true;
             setelahJatuh?.Invoke();
             boxSpawner.addScore(10);
@@ -47,10 +52,13 @@ public class BoxMoveHorizontal : MonoBehaviour
         if (isDropped && col.collider.CompareTag("tembok"))
         {
             isGameOver = true;
-            Debug.Log("Game over.....");
+            //Debug.Log("Game over.....");
             //spawnedImage = Instantiate(spritePrefab, spawnPosition, Quaternion.identity);
+            boxSpawner.tampilSkor();
+            boxSpawner.setHighSkor();
             boxSpawner.onoff.SetActive(true);
             Time.timeScale = 0f;
         }
     }
+
 }
