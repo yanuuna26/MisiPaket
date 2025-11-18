@@ -3,19 +3,18 @@ using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
-public class BoxSpawner : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
 
-    public GameObject boxPrefab;
+    public GameObject boxNow;
     public GameObject currentBox;
-    public GameObject gameoverimg;
+    public GameObject gameoverimg, highScoreImg, yourScoreImg;
     public GameObject RestartButton;
     public GameObject ExitButton;
     public TMP_Text skorText;
     public TMP_Text HiskorText;
-
-    public AudioSource suaraPaket;
-    public AudioSource backsoundMusic;
+    public TMP_Text yourScoreText;
+    public AudioSource suaraPaket;    
     public AudioSource dropBoxSound;
     public AudioSource gameOverSound;
 
@@ -37,12 +36,9 @@ public class BoxSpawner : MonoBehaviour
         if (PlayerPrefs.HasKey("highscore"))
         {
             highscore = PlayerPrefs.GetInt("highscore");
-            HiskorText.text = "High Score : " + highscore.ToString();
+            HiskorText.text = highscore.ToString();
         }
-        if(backsoundMusic != null)
-        {
-            backsoundMusic.Play();
-        }
+        
     }
 
     // Update is called once per frame
@@ -66,11 +62,11 @@ public class BoxSpawner : MonoBehaviour
     {
         Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.90f, 10f));
 
-        currentBox = Instantiate(boxPrefab, pos, Quaternion.identity);
+        currentBox = Instantiate(boxNow, pos, Quaternion.identity);
         
 
         // Reset status movement dan fisika box
-        BoxMoveHorizontal bm = currentBox.GetComponent<BoxMoveHorizontal>();
+        BoxPrefabs bm = currentBox.GetComponent<BoxPrefabs>();
         bm.isDropped = false;
         bm.isMoveRight = true;
         kecepatan += 1;
@@ -93,7 +89,7 @@ public class BoxSpawner : MonoBehaviour
 
     void DropBox()
     {
-        BoxMoveHorizontal bm = currentBox.GetComponent<BoxMoveHorizontal>();
+        BoxPrefabs bm = currentBox.GetComponent<BoxPrefabs>();
         bm.isDropped = true;
 
         Rigidbody2D rb = currentBox.GetComponent<Rigidbody2D>();
@@ -103,7 +99,7 @@ public class BoxSpawner : MonoBehaviour
     public void addScore(int score)
     {   
         skor = skor + score;
-        skorText.text = "Score : " + skor.ToString();
+        skorText.text = skor.ToString();
     }
 
     void UpdateSpeed(int score) { }

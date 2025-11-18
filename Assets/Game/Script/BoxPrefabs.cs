@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class BoxMoveHorizontal : MonoBehaviour
+public class BoxPrefabs : MonoBehaviour
 {
     public float kecepatan = 1f;
     public bool isMoveRight = true;
@@ -8,15 +9,15 @@ public class BoxMoveHorizontal : MonoBehaviour
     public bool isGrounded = false;
     public bool isGameOver = false;
     public System.Action setelahJatuh;
-    public BoxSpawner boxSpawner;
+    public GameManager gameManager;
     //GameObject spritePrefab;
     //GameObject spawnedImage;
     //public GameObject onoff;
 
     void Start()
     {
-        GameObject _boxSpawner = GameObject.FindGameObjectWithTag("boxGameOver");
-        boxSpawner = _boxSpawner.GetComponent<BoxSpawner>();
+        GameObject _gameManager = GameObject.FindGameObjectWithTag("boxGameOver");
+        gameManager = _gameManager.GetComponent<GameManager>();
     }
     void Update()
     {
@@ -41,8 +42,7 @@ public class BoxMoveHorizontal : MonoBehaviour
             Debug.Log("jatuh");
             isGrounded = true;
             setelahJatuh?.Invoke();
-            boxSpawner.addScore(10);
-            boxSpawner.dropBoxSound.Play();
+            gameManager.addScore(10);
 
         }
         if (isDropped && col.collider.CompareTag("tembok"))
@@ -50,11 +50,14 @@ public class BoxMoveHorizontal : MonoBehaviour
             isGameOver = true;
             Debug.Log("Game over.....");
             //spawnedImage = Instantiate(spritePrefab, spawnPosition, Quaternion.identity);
-            boxSpawner.gameoverimg.SetActive(true);
-            boxSpawner.SimpanHighScore();
-            boxSpawner.HiskorText.gameObject.SetActive(true);
-            boxSpawner.RestartButton.SetActive(true);
-            boxSpawner.gameOverSound.Play();
+            gameManager.gameoverimg.SetActive(true);
+            gameManager.highScoreImg.SetActive(true);
+            gameManager.HiskorText.gameObject.SetActive(true);
+            gameManager.yourScoreImg.gameObject.SetActive(true);
+            gameManager.yourScoreText.gameObject.SetActive(true);
+            gameManager.yourScoreText.text = gameManager.skor.ToString();
+            gameManager.RestartButton.SetActive(true);
+            gameManager.gameOverSound.Play();
             Time.timeScale = 0f;
         }
     }

@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
      // Fungsi untuk tombol Start
+
+    public AudioSource backsoundMusic;
+
     public void OnClickStart()
     {
         SceneManager.LoadScene("Gameplay");
@@ -32,14 +35,4 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
